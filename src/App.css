@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.disabled-link {
+  pointer-events: none;
+}
+
+.display-posts > div{
+  margin: 1em 1.01em;
+}
