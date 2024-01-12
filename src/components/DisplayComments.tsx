@@ -1,14 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import { useNavigate} from 'react-router-dom'
 import Header from "./Header.tsx";
-import UpdateComponent from "./UpdateComponent.tsx";
+import UpdateComment from "./UpdateComment.tsx";
 
 interface DisplayCommentsProps{
     results: unknown;
 }
 
 const DisplayComments:React.FC<DisplayCommentsProps> = ({results, handleResults}) =>{
-    const [update, setUpdate] = useState(false);
+    const ref = useRef(null);
+    const refClose = useRef<HTMLButtonElement|null>(null);
+    // const [currentIndex, setCurrentIndex] = useState<undefined|number>(1);
     const navigate = useNavigate()
     const handleView = (index:number)=>{
         navigate(`/viewcomment/${index}`)
@@ -22,7 +24,12 @@ const DisplayComments:React.FC<DisplayCommentsProps> = ({results, handleResults}
     }
 
     const handleUpdate = (index:number)=>{
-        setUpdate(true)
+        ref.current.click();
+        console.dir(
+            ref.current.click())
+        console.dir(ref);
+        // setCurrentIndex(index)
+        // setUpdate(true)
     }
 
     const handleDelete = (index:number)=>{
@@ -71,7 +78,31 @@ const DisplayComments:React.FC<DisplayCommentsProps> = ({results, handleResults}
                 })}
                 </tbody>
             </table>
-            {update && <UpdateComponent handleModify={handleUpdate} results={results} handleResults={handleResults} />}
+                <button type="button" ref={ref}  className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >
+                  Launch demo modal
+                </button>
+
+      <div className='modal fade' id="exampleModal"  tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div className="modal-dialog modal-dialog-centered" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div className="modal-body">
+        ...
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" className="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+          {/* <UpdateComment index={currentIndex} handleModify={handleUpdate} results={results} handleResults={handleResults} />} */}
             </>
 
     )
