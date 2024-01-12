@@ -1,8 +1,10 @@
 import React from 'react';
-import {useParams, useNavigate} from "react-router-dom";
 
-
-const ViewComment = ({closeModal, data}) =>{
+interface ViewCommentProps {
+    closeModal: ()=>void;
+    data: unknown;
+}
+const ViewComment:React.FC<ViewCommentProps> = ({closeModal, data}) =>{
  
     return(
         <>

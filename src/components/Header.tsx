@@ -5,9 +5,7 @@ interface HeaderProps {
     title: string;
 }
 const Header:React.FC<HeaderProps> = ({title}) =>{
-    console.log('hy ')
     const user = useContext(UserContext);
-    console.log(user)
     return (<>
 
             {title ? (<h2>Your {title} Page is here !!!</h2> )

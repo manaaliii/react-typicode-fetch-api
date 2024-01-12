@@ -1,10 +1,12 @@
-import React, {useState, useRef} from 'react';
-import Header from "./Header.tsx";
+import React, {useState} from 'react';
 import ViewComment from "./ViewComment.tsx";
 import AddComment from './AddComment.tsx';
+import Header from "./Header.tsx";
+import DeleteModal from '../customModals/DeleteModal.tsx';
 
-interface DisplayCommentsProps{
+interface DisplayCommentsProps {
     results: unknown;
+    handleResults: (results: unknown) => void;
 }
 
 const DisplayComments:React.FC<DisplayCommentsProps> = ({results, handleResults}) =>{
@@ -13,9 +15,9 @@ const DisplayComments:React.FC<DisplayCommentsProps> = ({results, handleResults}
     const [name, setName] = useState(null);
     const [body, setBody] = useState(null);
     const [isAddViewOpen, setIsAddViewOpen] = useState<boolean>(false);
-    
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isViewOpen, setIsViewOpen] = useState(false);
+    const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
     const handleView = (index:number)=>{
         setIsViewOpen(true);
@@ -33,6 +35,10 @@ const DisplayComments:React.FC<DisplayCommentsProps> = ({results, handleResults}
     
     const closeAddModal = () => {
         setIsAddViewOpen(false);
+    }
+
+    const closeDeleteModal = () => {
+        setIsDeleteOpen(false);
     }
 
     const sliceComment = (comment:string, size: number) => {
@@ -54,6 +60,14 @@ const DisplayComments:React.FC<DisplayCommentsProps> = ({results, handleResults}
     const handleModification = () => {
         const slicedResultFront = results.slice(0,currentIndex);
         const slicedResultBack = results.slice(currentIndex+1);
+        if(name === '' || name.length < 5){
+            alert('name must be at least 5 characters long!');
+            return false;
+        }
+        if(body === '' || body.length < 5){
+            alert('body must be at least 15 characters long!');
+            return false;
+        }
         const updatedResults =[...slicedResultFront,{
             "postId": data.postId,
             "id": data.id,
@@ -67,11 +81,8 @@ const DisplayComments:React.FC<DisplayCommentsProps> = ({results, handleResults}
 
 
     const handleDelete = (index:number)=>{
-        const userConfirmation = window.confirm(`Are you sure you want to delete this post?`)
-        if (userConfirmation){
-            const newResults = [...results.slice(0, index), ...results.slice(index+1)]
-            handleResults(newResults)
-        }
+       setCurrentIndex(index);
+       setIsDeleteOpen(true);
     }
 
     return  (
@@ -158,7 +169,7 @@ const DisplayComments:React.FC<DisplayCommentsProps> = ({results, handleResults}
                 </div>
                 </div>
       )}
-
+        {isDeleteOpen && <DeleteModal index={currentIndex} results={results} handleResults={handleResults} closeModal={closeDeleteModal} />}
         {isViewOpen && <ViewComment data={data} closeModal={closeViewModal} />}
         {isAddViewOpen && <AddComment results={results} handleResults={handleResults} closeModal={closeAddModal} />}
             </>
@@ -166,4 +177,3 @@ const DisplayComments:React.FC<DisplayCommentsProps> = ({results, handleResults}
     )
 }
 export default DisplayComments;
-

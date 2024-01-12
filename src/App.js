@@ -1,9 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import Navbar from "./components/Navbar.tsx";
 import Login from "./components/Login.tsx"
 import Home from "./components/Home.tsx";
-import {Routes , Route, useLocation} from 'react-router-dom';
+import {Routes , Route, useLocation, Navigate} from 'react-router-dom';
 import React, {useEffect, useReducer, useState} from "react";
 import userReducer from "./reducers/userReducer.tsx";
 import {UserContext, UserDispatchContext} from "./contexts/userContext.tsx";
@@ -12,6 +11,7 @@ import DisplayPosts from './components/DisplayPosts.tsx';
 import DisplayTodos from "./components/DisplayTodos.tsx";
 import DisplayComments from "./components/DisplayComments.tsx";
 import axios from "axios";
+import Footer from './components/Footer.tsx';
 
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
     useEffect(()=>{
         if(data === 'comments' || data === 'posts' || data === 'todos')
             fetchData(data)
-    }, [])
+    }, [data])
 
     const baseUrl = 'https://jsonplaceholder.typicode.com/'
     const fetchData =async(currentDisplay)=>{
@@ -45,29 +45,37 @@ function App() {
         setResults(response.data.slice(0, 100))
     }
 
-    // console.log("results", results)
   return (
     <div className="App">
-        <UserContext.Provider value={email}>
+           <UserContext.Provider value={email}>
             <UserDispatchContext.Provider value={dispatch}>
 
                 <Navbar handleDisplay={handleDisplay}/>
                 <Routes>
-                    <Route exact path="/" element={email!==null && <Home item={display} />} />
-                    <Route exact path="login/" element={email===null && <Login />} />
-                    {/*<Route exact path={display+'/'} element={display && <Display item={display} />} />*/}
-                    {email!==null && (
-                        <>
-                            <Route exact path={'viewtodo/:index'} element={<ViewTodo results={results}/>} />
-                            <Route exact path='posts/' element={<DisplayPosts results={results} handleResults={handleResults} /> } />
-                            <Route exact path='comments/'  element={<DisplayComments results={results} handleResults={handleResults}  /> } />
-                            <Route exact path='todos/'  element={<DisplayTodos results={results}  handleResults={handleResults} /> } /></>
-                    )}
-                </Routes>
+  {email !== null ? (
+    <>
+      <Route path="login/" element={<Navigate to="/" />} />
+      <Route path="*" element={<Navigate to="/" />} />
+      <Route index element={<Home />} />
+
+      <Route path="posts/" element={<DisplayPosts results={results} handleResults={handleResults} />} />
+      <Route path="comments/" element={<DisplayComments results={results} handleResults={handleResults} />} />
+      <Route path="todos/" element={<DisplayTodos results={results} handleResults={handleResults} />} />
+    </>
+  ) : (
+    <>
+      <Route path="*" element={<Navigate to="login/" />} />
+      <Route path="login/" element={<Login />} />
+    </>
+  )}
+</Routes>
+
             </UserDispatchContext.Provider>
         </UserContext.Provider>
+        <Footer />
     </div>
   );
 }
 
 export default App;
+
