@@ -1,21 +1,54 @@
-import React from 'react';
-import {useNavigate} from "react-router-dom";
+import React, {useState} from 'react';
+import ViewTodo from './ViewTodo.tsx'
 import Header from "./Header.tsx";
+import AddTodo from './AddTodo.tsx';
 
 const DisplayTodos:React.FC = ({results, handleResults}) =>{
+    
+    const [currentIndex, setCurrentIndex] = useState<undefined|number>(undefined);
+    const [data, setData] = useState(null);
+    const [completed, setCompleted] = useState<null|boolean>(null);
+    const [title, setTitle] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isViewOpen, setIsViewOpen] = useState(false);
+    const [isAddViewOpen, setIsAddViewOpen] = useState<boolean>(false);
+    
+    const closeAddModal = () => {
+        setIsAddViewOpen(false);
+    }
 
-    const navigate = useNavigate()
+    const closeModal = () => {
+      setIsModalOpen(false);
+    };
+    const closeViewModal = () => {
+        setIsViewOpen(false);
+    }
+
     const handleView = (index:number)=>{
-        navigate(`/viewtodo/${index}`)
+        setIsViewOpen(true);
+        setCurrentIndex(index);
+        setData(results[index]);
     }
-    const sliceTodo = (todo:string, size: number) => {
-        if (todo.length> size){
-            return todo.slice(0,size)+'...'
-        }
-        return todo;
+
+    const handleModification = () => {
+        const slicedResultFront = results.slice(0,currentIndex);
+        const slicedResultBack = results.slice(currentIndex+1);
+        const updatedResults =[...slicedResultFront, {
+            "userId": data.userId,
+            "id": data.id,
+            "title": title,
+            "completed": completed
+        }, ...slicedResultBack];
+        handleResults(updatedResults)
+        closeModal();
     }
+
     const handleUpdate = (index:number)=>{
-        navigate(`/updatetodo/${index}`)
+        setIsModalOpen(true);
+        setCurrentIndex(index);
+        setData(results[index]);
+        setTitle(results[index].title);
+        setCompleted(results[index].completed);
     }
 
     const handleDelete = (index:number)=>{
@@ -29,6 +62,7 @@ const DisplayTodos:React.FC = ({results, handleResults}) =>{
         <>
             <Header title='Todos' />
             <hr />
+            <button className='btn btn-dark' onClick={()=>setIsAddViewOpen(true)}>Add Todo</button>
             <table className='table'>
                 <thead>
                 <tr>
@@ -60,6 +94,52 @@ const DisplayTodos:React.FC = ({results, handleResults}) =>{
                 })}
                 </tbody>
             </table>
+            {isModalOpen && (
+                <div className="modal fade show" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style={{ display: 'block' }}>
+                <div className="modal-dialog modal-dialog-centered" role="document">
+                    <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLongTitle">Update Comment</h5>
+                        <button type="button" className="close" onClick={closeModal} aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div className='container-fluid'>
+                        
+                    <form className='mx-auto my-2' style={{ width: '100%', border: '1px solid gray', padding: '0.5em 0.5em' }}>
+    <div className="form-group">
+        <label htmlFor="userId">User Id</label>
+        <input disabled={true} type="text" value={data.userId} className="form-control" id="userId" />
+    </div>
+    <div className="form-group">
+        <label htmlFor="commentId">Comment Id</label>
+        <input disabled={true} type="text" value={data.id} className="form-control" id="commentId" />
+    </div>
+    <div className="form-group">
+        <label htmlFor="title">Title</label>
+        <input type="text" value={title} className="form-control" onChange={(event) => setTitle(event.target.value)} id="title" placeholder="Title" />
+    </div>
+    <div className="form-group">
+        <label htmlFor="status">Status</label>
+        <div onClick={() => setCompleted(!completed)} className="btn">
+            {completed ? "✔" : '❌'}
+        </div>
+    </div>
+    <button type="submit" className="my-3 btn btn-primary" onClick={handleUpdate}>Update</button>
+</form>
+                    </div>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" onClick={closeModal}>Close</button>
+                        <button type="button" className="btn btn-primary" onClick={handleModification}>Save changes</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+      )}
+      
+      {isViewOpen && <ViewTodo data={data} closeModal={closeViewModal} />}
+      {isAddViewOpen && <AddTodo results={results} handleResults={handleResults} closeModal={closeAddModal} />}
+      
         </>
 
     )

@@ -2,23 +2,33 @@ import React from 'react';
 import {useParams, useNavigate} from "react-router-dom";
 
 
-const ViewPost:React.FC = ({results}) =>{
-    let {index} = useParams();
-    let element = parseInt(index);
-    const data = results[element];
-    const navigate = useNavigate();
-
-    const handleBack = () =>{
-        navigate('/posts/');
-    }
+const ViewPost:React.FC = ({data, closeModal}) =>{
+  
+   
     return(
         <>
 
-            <div style={{width:'60%', border: '1px solid gray'}} className='mx-auto my-3'>
-                <h2>user: {data.userId}</h2>
-                <h3>{data.title}</h3>
-                <h4 style={{fontWeight: '400'}}>{data.body}</h4>
-                <button className="btn btn-primary my-2" onClick={handleBack}>back</button>
+          
+<div className="modal fade show" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style={{ display: 'block' }}>
+                <div className="modal-dialog modal-dialog-centered" role="document">
+                    <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLongTitle">By {data.userId}</h5>
+                        <button type="button" className="close" onClick={closeModal} aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div className='container-fluid'>
+                    <div style={{width:'100%', border: '1px solid gray'}} className='mx-auto my-3'>
+            
+                <h6>post id : {data.id}</h6>
+                <h4>title:{data.title}</h4>
+                <h4 style={{fontWeight: '400'}}><b>body:</b>{data.body}</h4>
+                <button className="btn btn-primary my-2" onClick={closeModal}>close</button>
+            </div>
+                    </div>
+                    </div>
+                </div>
             </div>
         </>
     )

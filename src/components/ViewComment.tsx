@@ -2,25 +2,31 @@ import React from 'react';
 import {useParams, useNavigate} from "react-router-dom";
 
 
-const ViewComment = ({results}) =>{
-    let {index} = useParams();
-    let element = parseInt(index);
-    const data = results[element];
-    const navigate = useNavigate();
-
-    const handleBack = () =>{
-        navigate('/comments/');
-    }
+const ViewComment = ({closeModal, data}) =>{
+ 
     return(
         <>
 
-            <div style={{width:'60%', border: '1px solid gray'}} className='mx-auto my-3'>
-                <h2>post Id: {data.postId}</h2>
-                <h2>user: {data.id}</h2>
-                <h3>{data.name}</h3>
-                <h4 style={{fontWeight: '400'}}>By - {data.email}</h4>
-                <h4 style={{fontWeight: '400'}}>{data.body}</h4>
-                <button className="btn btn-primary my-2" onClick={handleBack}>back</button>
+           <div className="modal fade show" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style={{ display: 'block' }}>
+                <div className="modal-dialog modal-dialog-centered" role="document">
+                    <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLongTitle">By {data.email}</h5>
+                        <button type="button" className="close" onClick={closeModal} aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div className='container-fluid'>
+                    <div style={{width:'100%', border: '1px solid gray'}} className='mx-auto my-3'>
+                <h4>user: {data.userId}</h4>
+                <h6>post id : {data.postId}</h6>
+                <h4>name:{data.name}</h4>
+                <h4 style={{fontWeight: '400'}}><b>body:</b>{data.body}</h4>
+                <button className="btn btn-primary my-2" onClick={closeModal}>close</button>
+            </div>
+                    </div>
+                    </div>
+                </div>
             </div>
         </>
     )
