@@ -1,8 +1,17 @@
 # CRUD on api App
 
-## Description
+#Overview
+This project is a comprehensive web application that facilitates CRUD (Create, Read, Update, Delete) operations with API integration. It provides an intuitive user interface for managing various entities such as posts, comments, and todos.
 
-This is a sample project README for your application. Please replace this text with a detailed description of your project.
+# Features
+
+- **User Authentication**: Secure login functionality with email and password.
+- **Dynamic Navigation**: A responsive navigation bar for easy access to different sections.
+- **Detailed Views**: Components for viewing individual posts, comments, and todos in detail.
+- **Add Functionality**: Capability to add new posts, comments, and todos.
+- **Update Operations**: Options to modify existing posts, comments, and todos.
+- **Deletion Support**: Intuitive modal prompts for safely deleting records.
+- **Global User Context**: Efficient global access to user information.
 
 ## Installation
 
