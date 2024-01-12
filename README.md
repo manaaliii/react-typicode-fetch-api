@@ -32,6 +32,10 @@ To include login during testing, use the following credentials:
 ## Project Structure
 ### Components
 
+#### `Main.tsx`
+
+This component serves as the central entry point, rendering the navigation bar, various endpoints, and the footer.
+
 #### `Footer.tsx`
 
 This component serves as the footer of the page.
@@ -39,6 +43,10 @@ This component serves as the footer of the page.
 #### `Header.tsx`
 
 Enables dynamic rendering of the header.
+
+#### `Endpoint.tsx`
+
+The main file containing various endpoints for accessing functionality.
 
 #### `Home.tsx`
 
@@ -110,4 +118,4 @@ A reducer responsible for setting or removing user information.
 
 ### App.js
 
-The main file containing various endpoints for accessing functionality.
+Main entry point and coordinator of the React application.
