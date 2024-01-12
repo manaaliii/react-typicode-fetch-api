@@ -1,8 +1,14 @@
 # CRUD on api App
 
-## Description
+# Features
 
-This is a sample project README for your application. Please replace this text with a detailed description of your project.
+- **User Authentication**: Secure login functionality with email and password.
+- **Dynamic Navigation**: A responsive navigation bar for easy access to different sections.
+- **Detailed Views**: Components for viewing individual posts, comments, and todos in detail.
+- **Add Functionality**: Capability to add new posts, comments, and todos.
+- **Update Operations**: Options to modify existing posts, comments, and todos.
+- **Deletion Support**: Intuitive modal prompts for safely deleting records.
+- **Global User Context**: Efficient global access to user information.
 
 ## Installation
 

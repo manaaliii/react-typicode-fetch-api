@@ -4,6 +4,7 @@ import {UserContext} from "../contexts/userContext.tsx";
 interface HeaderProps {
     title: string;
 }
+
 const Header:React.FC<HeaderProps> = ({title}) =>{
     const user = useContext(UserContext);
     return (<>
