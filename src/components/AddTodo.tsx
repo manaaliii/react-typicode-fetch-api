@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 
-const AddPost:React.FC = ({results, handleResults, closeModal}) =>{
+const AddTodo:React.FC = ({results, handleResults, closeModal}) =>{
     const id = results.length + 1;
     const [userId, setUserId] = useState('');
     const [title, setTitle] = useState('');
@@ -69,4 +69,4 @@ return (
         </div>
     );
 }
-export default AddPost;
+export default AddTodo;

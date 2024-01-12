@@ -20,9 +20,9 @@ const ViewPost:React.FC = ({data, closeModal}) =>{
                     <div className='container-fluid'>
                     <div style={{width:'100%', border: '1px solid gray'}} className='mx-auto my-3'>
             
-                <h6>post id : {data.id}</h6>
-                <h4>title:{data.title}</h4>
-                <h4 style={{fontWeight: '400'}}><b>body:</b>{data.body}</h4>
+                <h6 className='bottom-border'>post id : {data.id}</h6>
+                <h4 className='bottom-border'>title:{data.title}</h4>
+                <h4 className='bottom-border' style={{fontWeight: '400'}}><b>body:</b>{data.body}</h4>
                 <button className="btn btn-primary my-2" onClick={closeModal}>close</button>
             </div>
                     </div>

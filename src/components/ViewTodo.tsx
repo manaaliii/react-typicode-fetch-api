@@ -16,11 +16,9 @@ const ViewPost:React.FC = ({data, closeModal}) =>{
                         </button>
                     </div>
                     <div className='container-fluid'>
-                    <h2>user: {data.userId}</h2>
-                    <hr />
-                    <h5>{data.title}</h5>
-                    <hr />
-                    <h4 style={{fontWeight: '400'}}>Status : {data.completed?"✔":'❌'}</h4>
+                    <h2 className='bottom-border'>user: {data.userId}</h2>
+                    <h5 className='bottom-border'>{data.title}</h5>
+                    <h4 className='bottom-border' style={{fontWeight: '400'}}>Status : {data.completed?"✔":'❌'}</h4>
                 <button className="btn btn-primary my-2" onClick={closeModal}>close</button>
             </div>
                     </div>

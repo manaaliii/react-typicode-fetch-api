@@ -6,7 +6,6 @@ import {Routes , Route, useLocation, Navigate} from 'react-router-dom';
 import React, {useEffect, useReducer, useState} from "react";
 import userReducer from "./reducers/userReducer.tsx";
 import {UserContext, UserDispatchContext} from "./contexts/userContext.tsx";
-import ViewTodo from "./components/ViewTodo.tsx";
 import DisplayPosts from './components/DisplayPosts.tsx';
 import DisplayTodos from "./components/DisplayTodos.tsx";
 import DisplayComments from "./components/DisplayComments.tsx";

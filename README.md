@@ -1,70 +1,101 @@
-# Getting Started with Create React App
+# CRUD on api App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+This is a sample project README for your application. Please replace this text with a detailed description of your project.
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+To install dependencies, run the following command:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+npm install
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To include login during testing, use the following credentials:
 
-### `npm test`
+- **Email:** user1@example.com
+- **Password:** 123456
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Project Structure
+### Components
 
-### `npm run build`
+#### `Footer.tsx`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This component serves as the footer of the page.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### `Header.tsx`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Enables dynamic rendering of the header.
 
-### `npm run eject`
+#### `Home.tsx`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Represents the home page of the app.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### `Login.tsx`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+A component dedicated to the login functionality.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+#### `Navbar.tsx`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Handles the navigation throughout the application.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### `ViewComment.tsx`
 
-### Code Splitting
+Displays detailed information about a specific comment.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### `ViewPost.tsx`
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Displays detailed information about a specific post.
 
-### Making a Progressive Web App
+#### `ViewTodo.tsx`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Provides detailed information about a particular todo.
 
-### Advanced Configuration
+#### `AddComment.tsx`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Allows users to add comments.
 
-### Deployment
+#### `AddPost.tsx`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Enables the addition of new posts.
 
-### `npm run build` fails to minify
+#### `AddTodo.tsx`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Facilitates the addition of new todos.
+
+#### `DisplayComments.tsx`
+
+Displays all comments and provides functionality for updating and adding comments.
+
+#### `DisplayPosts.tsx`
+
+Displays all posts and provides functionality for updating, adding, and deleting posts.
+
+#### `DisplayTodos.tsx`
+
+Displays all todos and provides functionality for updating, adding, and deleting todos.
+
+### Custom Modals
+
+#### `DeleteModal.tsx`
+
+A modal designed for deleting records.
+
+### Contexts
+
+#### `userContext`
+
+A context that allows global access to user information.
+
+### Reducers
+
+#### `userReducer`
+
+A reducer responsible for setting or removing user information.
+
+### App.js
+
+The main file containing various endpoints for accessing functionality.

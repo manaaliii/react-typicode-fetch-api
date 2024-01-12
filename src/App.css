@@ -54,3 +54,9 @@
 body {
   padding-bottom: 60px;
 }
+
+.bottom-border{
+  /* margin: 1rem 0; */
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ccc;
+}
