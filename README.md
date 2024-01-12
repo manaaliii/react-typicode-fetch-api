@@ -1,8 +1,5 @@
 # CRUD on api App
 
-[Link to Repo](https://github.com/manaaliii/react-typicode-fetch-api)
-
-
 # Overview
 This project is a comprehensive web application that facilitates CRUD (Create, Read, Update, Delete) operations with API integration. It provides an intuitive user interface for managing various entities such as posts, comments, and todos.
 
