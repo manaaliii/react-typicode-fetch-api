@@ -106,13 +106,13 @@ A modal designed for deleting records.
 
 ### Contexts
 
-#### `userContext`
+#### `UserContext.tsx`
 
 A context that allows global access to user information.
 
 ### Reducers
 
-#### `userReducer`
+#### `UserReducer.tsx`
 
 A reducer responsible for setting or removing user information.
 
