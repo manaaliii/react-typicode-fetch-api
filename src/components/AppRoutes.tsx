@@ -1,15 +1,15 @@
-
 import Login from "./Login.tsx"
 import Home from "./Home.tsx";
-import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
+// @ts-ignore
 import React, { useContext} from "react";
 import DisplayPosts from './DisplayPosts.tsx';
 import DisplayTodos from "./DisplayTodos.tsx";
 import DisplayComments from "./DisplayComments.tsx";
-import { UserContext } from "../contexts/userContext.tsx";
+import { UserContext } from "../contexts/UserContext.tsx";
 
 
-const Endpoints = ({results, handleResults}) => {
+const AppRoutes = () => {
 
     const email = useContext(UserContext)
     return (
@@ -20,9 +20,9 @@ const Endpoints = ({results, handleResults}) => {
                     <Route path="*" element={<Navigate to="/" />} />
                     <Route index element={<Home item="" />} />
 
-                    <Route path="posts/" element={<DisplayPosts results={results} handleResults={handleResults} />} />
-                    <Route path="comments/" element={<DisplayComments results={results} handleResults={handleResults} />} />
-                    <Route path="todos/" element={<DisplayTodos results={results} handleResults={handleResults} />} />
+                    <Route path="posts/" element={<DisplayPosts  />} />
+                    <Route path="comments/" element={<DisplayComments />} />
+                    <Route path="todos/" element={<DisplayTodos  />} />
                 </>
             ) : (
                 <>
@@ -34,4 +34,4 @@ const Endpoints = ({results, handleResults}) => {
     )
 }
 
-export default Endpoints;
+export default AppRoutes;

@@ -1,31 +1,38 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
+import {ResultsDispatchContext} from "../contexts/ResultsContext.tsx";
+import {Actions} from "../reducers/ResultsReducer.tsx";
 
 
-const AddPost:React.FC = ({results, handleResults, closeModal}) =>{
+const AddPost:React.FC = ({results,  closeModal}) =>{
     const id = results.length + 1;
     const [userId, setUserId] = useState('');
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
+    const dispatch = useContext(ResultsDispatchContext);
+
     const handleAddPost = () =>{
         const UserId = parseInt(userId);
         if(UserId<1 || UserId>100  || userId===''){
             alert('Please enter user id between 1 and 100');
             return false;
         }
-        if(title=='' || title.length< 5){
+        if(title==='' || title.length< 5){
             alert('title must have at least 5 characters');
             return false;
         }
-        if(body=='' || body.length< 10){
+        if(body==='' || body.length< 10){
             alert('body must have at least 10 characters');
             return false;
         }
-        handleResults([{
-            id: id,
-            userId: userId,
-            title: title,
-            body: body,
-        }, ...results])
+        dispatch({
+            action: Actions.ADD,
+            payload: {
+                id: id,
+                userId: userId,
+                title: title,
+                body: body,
+            }
+        })
         closeModal();
     }
     

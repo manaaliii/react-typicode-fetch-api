@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5413dab3-5e84-4dc5-84e4-fd8cf237aa56" name="Changes" comment="" />
+    <list default="true" id="5413dab3-5e84-4dc5-84e4-fd8cf237aa56" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/contexts/ResultsContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/crud-api-app.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddComment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddComment.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddPost.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddPost.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddTodo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddTodo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DisplayComments.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DisplayComments.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DisplayPosts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DisplayPosts.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DisplayTodos.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DisplayTodos.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Endpoints.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppRoutes.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/userContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/UserContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/customModals/DeleteModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/customModals/DeleteModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/userReducer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/UserReducer.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,23 +48,26 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2anHZDZqBPm2hsCOeA4mjxmT7ls" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/manal/WebstormProjects/Fetch-API-Task/crud-api-app&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\manal\\WebstormProjects\\Fetch-API-Task\\crud-api-app\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/manal/WebstormProjects/Fetch-API-Task/crud-api-app",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Users\\manal\\WebstormProjects\\Fetch-API-Task\\crud-api-app\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\manal\WebstormProjects\Fetch-API-Task\crud-api-app\src\CustomHooks" />
@@ -58,6 +87,7 @@
       <workItem from="1705035691818" duration="998000" />
       <workItem from="1705045746995" duration="556000" />
       <workItem from="1705054234073" duration="715000" />
+      <workItem from="1705059925703" duration="4680000" />
     </task>
     <servers />
   </component>

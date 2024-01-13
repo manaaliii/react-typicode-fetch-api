@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
-import {Link, useNavigate} from "react-router-dom";
-import {UserDispatchContext} from "../contexts/userContext.tsx";
+import {    useNavigate} from "react-router-dom";
+import {UserDispatchContext} from "../contexts/UserContext.tsx";
 
 
 const Actions = {

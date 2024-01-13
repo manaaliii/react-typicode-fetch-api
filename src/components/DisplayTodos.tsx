@@ -1,31 +1,30 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import ViewTodo from './ViewTodo.tsx'
 import Header from "./Header.tsx";
 import AddTodo from './AddTodo.tsx';
 import DeleteModal from '../customModals/DeleteModal.tsx';
+import {ResultsContext, ResultsDispatchContext} from "../contexts/ResultsContext.tsx";
+import {Actions} from "../reducers/ResultsReducer.tsx";
 
-interface DisplayTodoProps {
-    results: unknown;
-    handleResults: (results: unknown) => void;
-}
-
-const DisplayTodos: React.FC<DisplayTodoProps> = ({results, handleResults}) => {
+const DisplayTodos: React.FC = () => {
 
     const [currentIndex, setCurrentIndex] = useState<undefined | number>(undefined);
     const [data, setData] = useState(null);
     const [completed, setCompleted] = useState<null | boolean>(null);
     const [title, setTitle] = useState(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isUpdateOpen, setIsUpdateOpen] = useState(false);
     const [isViewOpen, setIsViewOpen] = useState(false);
-    const [isAddViewOpen, setIsAddViewOpen] = useState<boolean>(false);
+    const [isAddOpen, setIsAddOpen] = useState<boolean>(false);
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+    const results = useContext(ResultsContext);
+    const dispatch = useContext(ResultsDispatchContext);
 
     const closeAddModal = () => {
-        setIsAddViewOpen(false);
+        setIsAddOpen(false);
     }
 
-    const closeModal = () => {
-        setIsModalOpen(false);
+    const closeUpdateModal = () => {
+        setIsUpdateOpen(false);
     };
     const closeViewModal = () => {
         setIsViewOpen(false);
@@ -41,24 +40,31 @@ const DisplayTodos: React.FC<DisplayTodoProps> = ({results, handleResults}) => {
     }
 
     const handleModification = () => {
-        const slicedResultFront = results.slice(0, currentIndex);
-        const slicedResultBack = results.slice(currentIndex + 1);
         if(title === '' || title.length < 5){
             alert('title must be at least 5 characters long!');
             return false;
         }
-        const updatedResults = [...slicedResultFront, {
+        const updatedResults ={
             "userId": data.userId,
             "id": data.id,
             "title": title,
             "completed": completed
-        }, ...slicedResultBack];
-        handleResults(updatedResults)
-        closeModal();
+        }
+
+        dispatch(
+            {
+                action: Actions.UPDATE,
+                payload:{
+                    data: updatedResults
+                }
+            }
+        )
+
+        closeUpdateModal();
     }
 
     const handleUpdate = (index: number) => {
-        setIsModalOpen(true);
+        setIsUpdateOpen(true);
         setCurrentIndex(index);
         setData(results[index]);
         setTitle(results[index].title);
@@ -73,7 +79,7 @@ const DisplayTodos: React.FC<DisplayTodoProps> = ({results, handleResults}) => {
         <>
             <Header title='Todos'/>
             <hr/>
-            <button className='btn btn-dark' onClick={() => setIsAddViewOpen(true)}>Add Todo</button>
+            <button className='btn btn-dark' onClick={() => setIsAddOpen(true)}>Add Todo</button>
             <table className='table'>
                 <thead>
                 <tr>
@@ -110,14 +116,14 @@ const DisplayTodos: React.FC<DisplayTodoProps> = ({results, handleResults}) => {
                 })}
                 </tbody>
             </table>
-            {isModalOpen && (
+            {isUpdateOpen && (
                 <div className="modal fade show" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
                      aria-hidden="true" style={{display: 'block'}}>
                     <div className="modal-dialog modal-dialog-centered" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
                                 <h5 className="modal-title" id="exampleModalLongTitle">Update Todo</h5>
-                                <button type="button" className="close" onClick={closeModal} aria-label="Close">
+                                <button type="button" className="close" onClick={closeUpdateModal} aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -150,7 +156,7 @@ const DisplayTodos: React.FC<DisplayTodoProps> = ({results, handleResults}) => {
                                 </form>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" onClick={closeModal}>Close</button>
+                                <button type="button" className="btn btn-secondary" onClick={closeUpdateModal}>Close</button>
                                 <button type="button" className="btn btn-primary" onClick={handleModification}>Save
                                     changes
                                 </button>
@@ -160,9 +166,9 @@ const DisplayTodos: React.FC<DisplayTodoProps> = ({results, handleResults}) => {
                 </div>
             )}
              
-        {isDeleteOpen && <DeleteModal index={currentIndex} results={results} handleResults={handleResults} closeModal={closeDeleteModal} />}   
+        {isDeleteOpen && <DeleteModal index={currentIndex} closeModal={closeDeleteModal} />}
             {isViewOpen && <ViewTodo data={data} closeModal={closeViewModal}/>}
-            {isAddViewOpen && <AddTodo results={results} handleResults={handleResults} closeModal={closeAddModal}/>}
+            {isAddOpen && <AddTodo results={results}  closeModal={closeAddModal}/>}
 
         </>
 

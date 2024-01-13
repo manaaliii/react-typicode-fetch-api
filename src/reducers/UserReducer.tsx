@@ -4,7 +4,7 @@ const Actions = {
     REMOVE: 'remove_user'
 }
 
-const userReducer = (user, action) =>{
+const UserReducer = (user, action) =>{
     switch (action.type){
         case Actions.SET: {
             const email = action.payload.email
@@ -19,4 +19,4 @@ const userReducer = (user, action) =>{
     }
 }
 
-export default userReducer;
+export default UserReducer;

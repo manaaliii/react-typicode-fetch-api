@@ -1,27 +1,27 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Header from "./Header.tsx";
 import ViewPost from "./ViewPost.tsx";
 import AddPost from './AddPost.tsx';
 import DeleteModal from '../customModals/DeleteModal.tsx';
+import {ResultsContext, ResultsDispatchContext} from "../contexts/ResultsContext.tsx";
+import {Actions} from "../reducers/ResultsReducer.tsx";
 
-interface DisplayPostsProps {
-    results: unknown;
-    handleResults: (results: unknown) => void;
-}
-
-const DisplayPosts: React.FC<DisplayPostsProps> = ({results, handleResults}) => {
+const DisplayPosts: React.FC = () => {
 
     const [currentIndex, setCurrentIndex] = useState<undefined | number>(undefined);
     const [data, setData] = useState(null);
     const [body, setBody] = useState(null);
     const [title, setTitle] = useState(null);
     const [isAddViewOpen, setIsAddViewOpen] = useState<boolean>(false);
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [isUpdateOpen, setIsUpdateOpen] = useState<boolean>(false);
     const [isViewOpen, setIsViewOpen] = useState<boolean>(false);
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+    const results = useContext(ResultsContext);
+    const dispatch = useContext(ResultsDispatchContext);
+    
 
-    const closeModal = () => {
-        setIsModalOpen(false);
+    const closeUpdateModal = () => {
+        setIsUpdateOpen(false);
     };
     const closeViewModal = () => {
         setIsViewOpen(false);
@@ -48,8 +48,6 @@ const DisplayPosts: React.FC<DisplayPostsProps> = ({results, handleResults}) => 
     }
 
     const handleModification = () => {
-        const slicedResultFront = results.slice(0, currentIndex);
-        const slicedResultBack = results.slice(currentIndex + 1);
         if(title === '' || title.length < 5){
             alert('title must be at least 5 characters long!');
             return false;
@@ -58,21 +56,24 @@ const DisplayPosts: React.FC<DisplayPostsProps> = ({results, handleResults}) => 
             alert('body must be at least 15 characters long!');
             return false;
         }
-        const updatedResults = [...slicedResultFront,
-            
-            {
+        const updatedResults ={
                 "userId": data.userId,
                 "id": data.id,
                 "title": title,
                 "body": body
-            }, ...slicedResultBack];
-        handleResults(updatedResults)
-        closeModal();
+            }
+        dispatch({
+            action: Actions.UPDATE,
+            payload:{
+                data:updatedResults
+            }
+        })
+        closeUpdateModal();
     }
 
 
     const handleUpdate = (index: number) => {
-        setIsModalOpen(true);
+        setIsUpdateOpen(true);
         setCurrentIndex(index);
         setData(results[index]);
         setTitle(results[index].title);
@@ -103,7 +104,7 @@ const DisplayPosts: React.FC<DisplayPostsProps> = ({results, handleResults}) => 
                 </tr>
                 </thead>
                 <tbody>
-                {results.map(({userId, id, title, body}, index) => {
+                {results?.map(({userId, id, title, body}, index) => {
                     return (
                         <tr key={index}>
                             <td>{userId}</td>
@@ -125,14 +126,14 @@ const DisplayPosts: React.FC<DisplayPostsProps> = ({results, handleResults}) => 
                 })}
                 </tbody>
             </table>
-            {isModalOpen && (
+            {isUpdateOpen && (
                 <div className="modal fade show" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
                      aria-hidden="true" style={{display: 'block'}}>
                     <div className="modal-dialog modal-dialog-centered" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
                                 <h5 className="modal-title" id="exampleModalLongTitle">Update Post</h5>
-                                <button type="button" className="close" onClick={closeModal} aria-label="Close">
+                                <button type="button" className="close" onClick={closeUpdateModal} aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -165,7 +166,7 @@ const DisplayPosts: React.FC<DisplayPostsProps> = ({results, handleResults}) => 
                                 </form>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" onClick={closeModal}>Close</button>
+                                <button type="button" className="btn btn-secondary" onClick={closeUpdateModal}>Close</button>
                                 <button type="button" className="btn btn-primary" onClick={handleModification}>Save
                                     changes
                                 </button>
@@ -176,9 +177,9 @@ const DisplayPosts: React.FC<DisplayPostsProps> = ({results, handleResults}) => 
             )}
 
              
-        {isDeleteOpen && <DeleteModal index={currentIndex} results={results} handleResults={handleResults} closeModal={closeDeleteModal} />}   
+        {isDeleteOpen && <DeleteModal index={currentIndex} closeModal={closeDeleteModal} />}
             {isViewOpen && <ViewPost data={data} closeModal={closeViewModal}/>}
-            {isAddViewOpen && <AddPost results={results} handleResults={handleResults} closeModal={closeAddModal}/>}
+            {isAddViewOpen && <AddPost closeModal={closeAddModal}/>}
         </>
 
     )

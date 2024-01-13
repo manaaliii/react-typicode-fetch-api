@@ -1,23 +1,25 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import ViewComment from "./ViewComment.tsx";
 import AddComment from './AddComment.tsx';
 import Header from "./Header.tsx";
 import DeleteModal from '../customModals/DeleteModal.tsx';
+import {ResultsDispatchContext} from "../contexts/ResultsContext.tsx";
+import {Actions} from "../reducers/ResultsReducer.tsx";
+import {ResultsContext} from "../contexts/ResultsContext.tsx";
 
-interface DisplayCommentsProps {
-    results: unknown;
-    handleResults: (results: unknown) => void;
-}
 
-const DisplayComments:React.FC<DisplayCommentsProps> = ({results, handleResults}) =>{
+
+const DisplayComments:React.FC = () =>{
     const [currentIndex, setCurrentIndex] = useState<undefined|number>(1);
     const [data, setData] = useState(null);
     const [name, setName] = useState(null);
     const [body, setBody] = useState(null);
     const [isAddViewOpen, setIsAddViewOpen] = useState<boolean>(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isUpdateOpen, setIsUpdateOpen] = useState(false);
     const [isViewOpen, setIsViewOpen] = useState(false);
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+    const results = useContext(ResultsContext);
+    const dispatch = useContext(ResultsDispatchContext);
 
     const handleView = (index:number)=>{
         setIsViewOpen(true);
@@ -25,8 +27,8 @@ const DisplayComments:React.FC<DisplayCommentsProps> = ({results, handleResults}
         setData(results[index]);
     }
 
-    const closeModal = () => {
-      setIsModalOpen(false);
+    const closeUpdateModal = () => {
+      setIsUpdateOpen(false);
     };
     const closeViewModal = () => {
         setIsViewOpen(false);
@@ -49,7 +51,7 @@ const DisplayComments:React.FC<DisplayCommentsProps> = ({results, handleResults}
     }
 
     const handleUpdate = (index:number)=>{
-        setIsModalOpen(true);
+        setIsUpdateOpen(true);
         setCurrentIndex(index);
         setData(results[index]);
         setName(results[index].name);
@@ -58,8 +60,6 @@ const DisplayComments:React.FC<DisplayCommentsProps> = ({results, handleResults}
     }
 
     const handleModification = () => {
-        const slicedResultFront = results.slice(0,currentIndex);
-        const slicedResultBack = results.slice(currentIndex+1);
         if(name === '' || name.length < 5){
             alert('name must be at least 5 characters long!');
             return false;
@@ -68,15 +68,22 @@ const DisplayComments:React.FC<DisplayCommentsProps> = ({results, handleResults}
             alert('body must be at least 15 characters long!');
             return false;
         }
-        const updatedResults =[...slicedResultFront,{
+        const updatedResults ={
             "postId": data.postId,
             "id": data.id,
             "name": name,
             "email": data.email,
             "body": body
-        }, ...slicedResultBack];
-        handleResults(updatedResults)
-        closeModal();
+        };
+
+        dispatch({
+            action: Actions.UPDATE,
+            payload: {
+                index: currentIndex,
+                data: updatedResults
+            }
+        })
+        closeUpdateModal();
     }
 
 
@@ -125,13 +132,13 @@ const DisplayComments:React.FC<DisplayCommentsProps> = ({results, handleResults}
                 })}
                 </tbody>
             </table>
-                {isModalOpen && (
+                {isUpdateOpen && (
                 <div className="modal fade show" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style={{ display: 'block' }}>
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title" id="exampleModalLongTitle">Update Comment</h5>
-                        <button type="button" className="close" onClick={closeModal} aria-label="Close">
+                        <button type="button" className="close" onClick={closeUpdateModal} aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -162,16 +169,16 @@ const DisplayComments:React.FC<DisplayCommentsProps> = ({results, handleResults}
 
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" onClick={closeModal}>Close</button>
+                        <button type="button" className="btn btn-secondary" onClick={closeUpdateModal}>Close</button>
                         <button type="button" className="btn btn-primary" onClick={handleModification}>Save changes</button>
                     </div>
                     </div>
                 </div>
                 </div>
       )}
-        {isDeleteOpen && <DeleteModal index={currentIndex} results={results} handleResults={handleResults} closeModal={closeDeleteModal} />}
+        {isDeleteOpen && <DeleteModal index={currentIndex} closeModal={closeDeleteModal} />}
         {isViewOpen && <ViewComment data={data} closeModal={closeViewModal} />}
-        {isAddViewOpen && <AddComment results={results} handleResults={handleResults} closeModal={closeAddModal} />}
+        {isAddViewOpen && <AddComment closeModal={closeAddModal} />}
             </>
 
     )

@@ -1,28 +1,35 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
+import {ResultsDispatchContext} from "../contexts/ResultsContext.tsx";
+import {Actions} from "../reducers/ResultsReducer.tsx";
 
 
-const AddTodo:React.FC = ({results, handleResults, closeModal}) =>{
+const AddTodo:React.FC = ({results, closeModal}) =>{
     const id = results.length + 1;
     const [userId, setUserId] = useState('');
     const [title, setTitle] = useState('');
     const [completed, setCompleted] = useState<boolean>(false);
+    const dispatch = useContext(ResultsDispatchContext)
     const handleAddPost = () =>{
         const UserId = parseInt(userId);
         if(UserId<1 || UserId>100  || userId===''){
             alert('Please enter user id between 1 and 100');
             return false;
         }
-        if(title=='' || title.length< 5){
+        if(title==='' || title.length< 5){
             alert('title must have at least 5 characters');
             return false;
         }
-        
-        handleResults([{
-            "userId": userId,
-            "id": id,
-            "title": title,
-            "completed": completed
-        }, ...results])
+        dispatch({
+            action: Actions.ADD,
+            payload:{
+                data:{
+                    "userId": userId,
+                    "id": id,
+                    "title": title,
+                    "completed": completed
+                }
+            }
+        })
         closeModal();
     }
     

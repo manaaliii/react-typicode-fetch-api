@@ -1,22 +1,27 @@
 import './App.css';
-import userReducer from "./reducers/userReducer.tsx";
+import UserReducer from "./reducers/UserReducer.tsx";
+import ResultsReducer from "./reducers/ResultsReducer.tsx";
 import { useReducer } from "react";
-import { UserContext, UserDispatchContext } from "./contexts/userContext.tsx"; 
+import { UserContext, UserDispatchContext } from "./contexts/UserContext.tsx";
+import {ResultsContext, ResultsDispatchContext} from "./contexts/ResultsContext.tsx";
 import Main from './components/Main.tsx';
 
 function App() {
   
   const initialEmail = localStorage.getItem('email');
-  const [email, dispatch] = useReducer(userReducer, initialEmail);
+  const [email, dispatchEmail] = useReducer(UserReducer, initialEmail);
+  const [results, dispatchResults] = useReducer(ResultsReducer, [])
 
   return (
     <div className="App">
            <UserContext.Provider value={email}>
-            <UserDispatchContext.Provider value={dispatch}>
-
-             <Main />
-
-            </UserDispatchContext.Provider>
+               <ResultsContext.Provider value={results}>
+                   <ResultsDispatchContext.Provider value={dispatchResults}>
+                       <UserDispatchContext.Provider value={dispatchEmail}>
+                           <Main />
+                       </UserDispatchContext.Provider>
+                   </ResultsDispatchContext.Provider>
+               </ResultsContext.Provider>
         </UserContext.Provider>
     </div>
   );

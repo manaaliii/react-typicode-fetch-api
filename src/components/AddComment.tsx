@@ -1,12 +1,15 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
+import {ResultsDispatchContext} from "../contexts/ResultsContext.tsx";
+import {Actions} from "../reducers/ResultsReducer.tsx";
 
 
-const AddComment:React.FC = ({results, handleResults, closeModal}) =>{
+const AddComment:React.FC = ({results, closeModal}) =>{
     const [postId, setPostId] = useState('');
     const id = results.length + 1;
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [body, setBody] = useState('');
+    const dispatch = useContext(ResultsDispatchContext);
     const handleAddPost = () =>{
         const PostId = parseInt(postId);
         const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -19,21 +22,26 @@ const AddComment:React.FC = ({results, handleResults, closeModal}) =>{
             return false;
         }
         
-        if(name=='' || name.length< 5){
+        if(name==='' || name.length< 5){
             alert('title must have at least 5 characters');
             return false;
         }
-        if(body=='' || body.length< 10){
+        if(body==='' || body.length< 10){
             alert('body must have at least 10 characters');
             return false;
         }
-        handleResults([{
-            postId: postId,
-            id: id,
-            email: email,
-            name: name,
-            body: body,
-        }, ...results])
+        dispatch({
+            action: Actions.ADD,
+            payload: {
+                data:{
+                    postId: postId,
+                    id: id,
+                    email: email,
+                    name: name,
+                    body: body,
+                }
+            }
+        })
         closeModal();
     }
     

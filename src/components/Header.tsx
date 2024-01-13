@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {UserContext} from "../contexts/userContext.tsx";
+import {UserContext} from "../contexts/UserContext.tsx";
 
 interface HeaderProps {
     title: string;

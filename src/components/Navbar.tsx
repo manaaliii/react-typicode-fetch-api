@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import { Link } from "react-router-dom";
-import {UserContext, UserDispatchContext} from "../contexts/userContext.tsx";
+import {UserContext, UserDispatchContext} from "../contexts/UserContext.tsx";
+import { ResultsDispatchContext } from '../contexts/ResultsContext.tsx';
 
 
 const Actions = {

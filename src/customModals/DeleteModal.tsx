@@ -1,19 +1,21 @@
-import React from "react";
+import React, {useContext} from "react";
+import {ResultsDispatchContext} from "../contexts/ResultsContext.tsx";
+import {Actions} from "../reducers/ResultsReducer.tsx";
 
 interface DeleteModalProps {
     closeModal: () => void;
-    handleResults : (results:object[]) => void;
     index: number;
-    results: object[];
 }
 
-const DeleteModal: React.FC<DeleteModalProps> = ({ closeModal, index, results, handleResults }) => {
-
+const DeleteModal: React.FC<DeleteModalProps> = ({ closeModal, index }) => {
+    const dispatch = useContext(ResultsDispatchContext)
     const handleDelete = () => {
-        const slicedResultFront = results.slice(0, index);
-        const slicedResultBack = results.slice(index + 1);
-        const updatedResults = [...slicedResultFront, ...slicedResultBack];
-        handleResults(updatedResults)
+        dispatch({
+            action: Actions.REMOVE,
+            payload: {
+                index: index,
+            }
+        })
         closeModal();
     }
     return (
