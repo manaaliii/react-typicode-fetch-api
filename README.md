@@ -1,12 +1,15 @@
 # CRUD on api App
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Features
 
 =======
 [Link to Repo](https://github.com/manaaliii/react-typicode-fetch-api)
 
 
+=======
+>>>>>>> 0afaeb05ab94400e80e6505f10df172b0349e4af
 # Overview
 This project is a comprehensive web application that facilitates CRUD (Create, Read, Update, Delete) operations with API integration. It provides an intuitive user interface for managing various entities such as posts, comments, and todos.
 
@@ -37,6 +40,10 @@ To include login during testing, use the following credentials:
 ## Project Structure
 ### Components
 
+#### `Main.tsx`
+
+This component serves as the central entry point, rendering the navigation bar, various endpoints, and the footer.
+
 #### `Footer.tsx`
 
 This component serves as the footer of the page.
@@ -44,6 +51,10 @@ This component serves as the footer of the page.
 #### `Header.tsx`
 
 Enables dynamic rendering of the header.
+
+#### `Endpoint.tsx`
+
+The main file containing various endpoints for accessing functionality.
 
 #### `Home.tsx`
 
@@ -103,16 +114,16 @@ A modal designed for deleting records.
 
 ### Contexts
 
-#### `userContext`
+#### `UserContext.tsx`
 
 A context that allows global access to user information.
 
 ### Reducers
 
-#### `userReducer`
+#### `UserReducer.tsx`
 
 A reducer responsible for setting or removing user information.
 
 ### App.js
 
-The main file containing various endpoints for accessing functionality.
+Main entry point and coordinator of the React application.
