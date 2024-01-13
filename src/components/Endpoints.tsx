@@ -1,4 +1,3 @@
-
 import Login from "./Login.tsx"
 import Home from "./Home.tsx";
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
