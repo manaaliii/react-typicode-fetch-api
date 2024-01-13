@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, {useContext, useState} from 'react';
 import ViewTodo from './ViewTodo.tsx'
 import Header from "./Header.tsx";
