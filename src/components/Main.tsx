@@ -9,9 +9,7 @@ import axios from 'axios';
 import {ResultsContext, ResultsDispatchContext} from "../contexts/ResultsContext.tsx";
 
 const Main = () =>{
-  const results = useContext(ResultsContext);
   const dispatch = useContext(ResultsDispatchContext);
-
 
   const location = useLocation()
   let { pathname } = location;
@@ -51,8 +49,11 @@ const Main = () =>{
   return(
     <>
      <Navbar handleDisplay={handleDisplay} />
-     {results?.length && <AppRoutes />}
+     <AppRoutes />
      <Footer />
     </>
   )
 }
+
+
+export default Main;

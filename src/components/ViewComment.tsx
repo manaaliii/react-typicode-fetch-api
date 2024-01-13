@@ -20,8 +20,8 @@ const ViewComment:React.FC<ViewCommentProps> = ({closeModal, data}) =>{
                     </div>
                     <div className='container-fluid'>
                     <div style={{width:'100%', border: '1px solid gray'}} className='mx-auto my-3'>
-                <h4 className='bottom-border'>user: {data.userId}</h4>
-                <h6 className='bottom-border'>post id : {data.postId}</h6>
+                <h4 className='bottom-border'>user: {data.postId}</h4>
+                <h6 className='bottom-border'>ID : {data.id}</h6>
                 <h4 className='bottom-border'>name:{data.name}</h4>
                 <h4 className='bottom-border' style={{fontWeight: '400'}}><b>body:</b>{data.body}</h4>
                 <button className="btn btn-primary my-2" onClick={closeModal}>close</button>

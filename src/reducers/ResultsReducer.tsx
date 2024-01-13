@@ -6,6 +6,7 @@ const Actions = {
 }
 
 const ResultsReducer = (results, action) => {
+    console.log(action);
     switch (action.type) {
         case Actions.SET:{
             return action.payload.results
@@ -18,9 +19,11 @@ const ResultsReducer = (results, action) => {
         }
         case Actions.UPDATE:{
             const index = action.payload.index
+            console.log(index);
             const frontSlice = results.slice(0, index);
             const backSlice = results.slice(index + 1);
-            const newResult = action.payload.data
+            const newResult = action.payload.data;
+        
             return [...frontSlice, newResult,...backSlice]
         }
         case Actions.ADD:{

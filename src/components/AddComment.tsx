@@ -32,7 +32,7 @@ const AddComment:React.FC = ({closeModal}) =>{
             return false;
         }
         dispatch({
-            action: Actions.ADD,
+            type: Actions.ADD,
             payload: {
                 data:{
                     postId: postId,

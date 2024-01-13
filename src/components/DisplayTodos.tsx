@@ -53,8 +53,9 @@ const DisplayTodos: React.FC = () => {
 
         dispatch(
             {
-                action: Actions.UPDATE,
+                type: Actions.UPDATE,
                 payload:{
+                    index: currentIndex,
                     data: updatedResults
                 }
             }

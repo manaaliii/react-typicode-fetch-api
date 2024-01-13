@@ -18,6 +18,7 @@ const DisplayPosts: React.FC = () => {
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
     const results = useContext(ResultsContext);
     const dispatch = useContext(ResultsDispatchContext);
+   
     
 
     const closeUpdateModal = () => {
@@ -48,6 +49,7 @@ const DisplayPosts: React.FC = () => {
     }
 
     const handleModification = () => {
+        console.log(data)
         if(title === '' || title.length < 5){
             alert('title must be at least 5 characters long!');
             return false;
@@ -63,8 +65,9 @@ const DisplayPosts: React.FC = () => {
                 "body": body
             }
         dispatch({
-            action: Actions.UPDATE,
+            type: Actions.UPDATE,
             payload:{
+                index: currentIndex,
                 data:updatedResults
             }
         })

@@ -25,13 +25,16 @@ const AddPost:React.FC = ({closeModal}) =>{
             alert('body must have at least 10 characters');
             return false;
         }
+
+        console.log(userId);
         dispatch({
-            action: Actions.ADD,
+            type: Actions.ADD,
             payload: {
-                id: id,
-                userId: userId,
-                title: title,
-                body: body,
+                data:{
+                    userId: UserId,
+                    id: id,
+                    title: title,
+                    body: body,}
             }
         })
         closeModal();

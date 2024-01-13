@@ -21,7 +21,7 @@ const AddTodo:React.FC = ({closeModal}) =>{
             return false;
         }
         dispatch({
-            action: Actions.ADD,
+            type: Actions.ADD,
             payload:{
                 data:{
                     "userId": userId,

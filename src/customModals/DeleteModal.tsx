@@ -11,7 +11,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ closeModal, index }) => {
     const dispatch = useContext(ResultsDispatchContext)
     const handleDelete = () => {
         dispatch({
-            action: Actions.REMOVE,
+            type: Actions.REMOVE,
             payload: {
                 index: index,
             }
