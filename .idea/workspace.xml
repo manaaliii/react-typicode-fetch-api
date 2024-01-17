@@ -2,11 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5413dab3-5e84-4dc5-84e4-fd8cf237aa56" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppRoutes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppRoutes.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Endpoints.tsx" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Alert.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DisplayTable.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modalForms/PostForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modalForms/TodoForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/crud-api-app.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddComment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modalForms/CommentForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddPost.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddTodo.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AppRoutes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/AppRoutes.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DisplayComments.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DisplayComments.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DisplayPosts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DisplayPosts.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DisplayTodos.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DisplayTodos.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ViewComment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ViewComment.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ViewPost.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ViewPost.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ViewTodo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ViewTodo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/customModals/DeleteModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/customModals/DeleteModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/ResultsReducer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/ResultsReducer.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +75,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\manal\WebstormProjects\Fetch-API-Task\crud-api-app\src\CustomHooks" />
+      <recent name="C:\Users\manal\WebstormProjects\Fetch-API-Task\crud-api-app\src" />
+      <recent name="C:\Users\manal\WebstormProjects\Fetch-API-Task\crud-api-app\src\routes" />
+      <recent name="C:\Users\manal\WebstormProjects\Fetch-API-Task\crud-api-app\src\components" />
+      <recent name="C:\Users\manal\WebstormProjects\Fetch-API-Task\crud-api-app\src\forms" />
+      <recent name="C:\Users\manal\WebstormProjects\Fetch-API-Task\crud-api-app\src\contexts" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -69,6 +98,11 @@
       <workItem from="1705054234073" duration="715000" />
       <workItem from="1705059925703" duration="4680000" />
       <workItem from="1705145948678" duration="431000" />
+      <workItem from="1705388458531" duration="24000" />
+      <workItem from="1705406907259" duration="209000" />
+      <workItem from="1705407463502" duration="3216000" />
+      <workItem from="1705464600490" duration="10038000" />
+      <workItem from="1705475817528" duration="10707000" />
     </task>
     <servers />
   </component>

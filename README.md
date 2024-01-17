@@ -74,15 +74,15 @@ Displays detailed information about a specific post.
 
 Provides detailed information about a particular todo.
 
-#### `AddComment.tsx`
+#### `CommentForm.tsx`
 
 Allows users to add comments.
 
-#### `AddPost.tsx`
+#### `PostForm.tsx`
 
 Enables the addition of new posts.
 
-#### `AddTodo.tsx`
+#### `TodoForm.tsx`
 
 Facilitates the addition of new todos.
 

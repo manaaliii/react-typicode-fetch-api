@@ -2,13 +2,13 @@ import React from 'react';
 import Header from './Header.tsx';
 
 interface HomeProps {
-    item: string;
+    header: string;
 }
 
-const Home: React.FC<HomeProps> = ({item}) => {
+const Home: React.FC<HomeProps> = ({header}) => {
     return (
         <>
-            <Header title={item}/>
+            <Header title={header}/>
         </>
     )
 }
